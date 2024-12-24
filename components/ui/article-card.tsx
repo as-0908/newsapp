@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { DEFAULT_IMAGE } from "@/lib/constants";
-import { Article } from "@/lib/types";
+import { Article } from "@/lib/types/index";
+
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";

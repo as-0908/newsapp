@@ -1,4 +1,4 @@
-import { Article } from "@/lib/types";
+import { Article } from "./index";
 
 export interface NewsApiParams {
   query?: string;
@@ -17,18 +17,6 @@ export interface NewsApiResponse {
   status: string;
   totalResults: number;
   articles: Article[];
-}
-
-export interface Article {
-  title: string;
-  description: string;
-  url: string;
-  urlToImage: string;
-  publishedAt: string;
-  source: {
-    name: string;
-  };
-  sentimentScore: number;
 }
 
 
