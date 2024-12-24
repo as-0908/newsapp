@@ -1,4 +1,4 @@
-import { Metadata } from 'next';  // Metadata型をインポート
+import type { Metadata } from 'next'; 
 
 export const metadata: Metadata = {
   title: "ニュースブログ",
