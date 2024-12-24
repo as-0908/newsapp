@@ -30,12 +30,12 @@ export function ArticleCard({ article }: ArticleCardProps) {
             <span>{format(new Date(article.publishedAt), "PP")}</span>
           </div>
           <h3 className="font-semibold mb-2 line-clamp-2">{article.title}</h3>
+          <p>感情スコア: {article.sentimentScore}</p>
           {article.description && (
             <p className="text-sm text-muted-foreground line-clamp-3">
               {article.description}
             </p>
           )}
-          <p>感情スコア: {article.sentimentScore}</p>
         </CardContent>
       </Card>
     </Link>

@@ -14,19 +14,25 @@ export default async function Home() {
     const { articles } = response;
 
     const processedArticles = await Promise.all(
-      articles.map(async (article: Article) => ({
-        ...article,
-        sentimentScore: await analyzeSentiment(article.description || ""),
-      }))
+      articles.map(async (article) => {
+        const textToAnalyze = article.description || article.title;
+        return {
+          ...article,
+          sentimentScore: await analyzeSentiment(textToAnalyze),
+        };
+      })
     );
 
+    const SENTIMENT_THRESHOLD = 0.4;
     const positiveArticles = processedArticles.filter(
-      (article) => article.sentimentScore > 0
+      (article) =>
+        article.sentimentScore !== undefined &&
+        article.sentimentScore >= SENTIMENT_THRESHOLD
     );
 
     const randomArticles = getRandomArticles(
-      processedArticles,
-      Math.min(9, processedArticles.length)
+      positiveArticles,
+      Math.min(9, positiveArticles.length)
     );
 
     return (
