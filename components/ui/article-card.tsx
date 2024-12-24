@@ -34,6 +34,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
               {article.description}
             </p>
           )}
+          <p>感情スコア: {article.sentimentScore}</p>
         </CardContent>
       </Card>
     </Link>
