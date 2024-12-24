@@ -14,7 +14,7 @@ export default async function Home() {
     const { articles } = response;
 
     const processedArticles = await Promise.all(
-      articles.map(async (article) => {
+      articles.map(async (article: Article) => {
         const textToAnalyze = article.description || article.title;
         return {
           ...article,
