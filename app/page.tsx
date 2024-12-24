@@ -1,6 +1,7 @@
 import { ArticleCard } from "@/components/ui/article-card";
 import { getTopHeadlines } from "@/lib/api/news";
 import { Article } from "@/lib/types";
+import { analyzeSentiment } from "@/lib/sentimentAnalysis";
 
 function getRandomArticles(articles: Article[], count: number): Article[] {
   return articles.sort(() => 0.5 - Math.random()).slice(0, count);
@@ -12,13 +13,16 @@ export default async function Home() {
 
     const { articles } = response;
 
-    const processedArticles = articles.map((article: Article) => ({
-      ...article,
-      source: {
-        id: article.source?.id || null,
-        name: article.source?.name || "",
-      },
-    }));
+    const processedArticles = await Promise.all(
+      articles.map(async (article: Article) => ({
+        ...article,
+        sentimentScore: await analyzeSentiment(article.description || ""),
+      }))
+    );
+
+    const positiveArticles = processedArticles.filter(
+      (article) => article.sentimentScore > 0
+    );
 
     const randomArticles = getRandomArticles(
       processedArticles,
