@@ -24,8 +24,11 @@ export default function RootLayout({
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <h1 className="flex items-center gap-2">
                 <Newspaper className="h-6 w-6" />
-                <span className="text-xl font-bold">ニュースブログ</span>
+                <span className="text-xl font-bold">ポジティブニュース</span>
               </h1>
+              <p className="text-sm text-gray-500">
+                ポジティブなニュースを集めています
+              </p>
               <div className="flex items-center gap-4">
                 {pathname !== "/auth/login" && pathname !== "/auth/signup" && (
                   <SearchBar />
