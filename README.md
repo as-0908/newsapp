@@ -4,7 +4,8 @@
 
 [アプリURL]
 https://newsapp-rouge-delta.vercel.app/
-<img width="946" alt="image" src="https://github.com/user-attachments/assets/8a07544b-8e2d-4f3a-9878-431182a08f62" />
+![FireShot Capture 009 -  - newsapp-rouge-delta vercel app](https://github.com/user-attachments/assets/fcc66f6f-a782-4a25-853f-04ccf7a32eb4)
+
 
 
 ### テスト用ログイン情報
