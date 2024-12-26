@@ -8,6 +8,7 @@ import {
   PaginationItem,
   PaginationLink,
 } from "@/components/ui/pagination";
+import { getCachedSentiment, setCachedSentiment } from "@/lib/cache";
 
 function getRandomArticles(articles: Article[], count: number): Article[] {
   return articles.sort(() => 0.5 - Math.random()).slice(0, count);
@@ -25,12 +26,26 @@ export default async function Home({
 
     const { articles } = response;
 
+    const limitedArticles = articles.slice(0, 12);
+
     const processedArticles = await Promise.all(
-      articles.map(async (article: Article) => {
+      limitedArticles.map(async (article: Article) => {
         const textToAnalyze = article.description || article.title;
+
+        const cachedScore = await getCachedSentiment(textToAnalyze);
+        if (cachedScore !== null) {
+          return {
+            ...article,
+            sentimentScore: cachedScore,
+          };
+        }
+
+        const score = await analyzeSentiment(textToAnalyze);
+        await setCachedSentiment(textToAnalyze, score);
+
         return {
           ...article,
-          sentimentScore: await analyzeSentiment(textToAnalyze),
+          sentimentScore: score,
         };
       })
     );
