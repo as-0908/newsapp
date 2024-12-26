@@ -34,6 +34,9 @@ https://newsapp-rouge-delta.vercel.app/auth/signup
 ---
 
 ## 今後追加予定の機能
+- **ログアウト機能**
+- **記事取得の工夫**
+現状の仕様ではCloud Natural Language APIの課金が発生してしまっているので、APIからの記事取得を工夫
 - **お気に入り登録**  
   気になる記事をお気に入りとして保存可能にする機能。
 - **翻訳機能**  
